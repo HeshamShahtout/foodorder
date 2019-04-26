@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.example.eatit.Common.Common;
 import com.example.eatit.Interface.itemClickListner;
 import com.example.eatit.Model.Category;
+import com.example.eatit.Service.ListenOrder;
 import com.example.eatit.ViewHolder.MenuViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
@@ -81,6 +82,10 @@ public class Home extends AppCompatActivity
         recycler_menu.setLayoutManager(layoutManager);
         
         loadMenu();
+
+        //Register Service
+        Intent service = new Intent(Home.this, ListenOrder.class);
+        startService(service);
 
     }
 
