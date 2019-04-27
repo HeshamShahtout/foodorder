@@ -28,6 +28,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
+import io.paperdb.Paper;
+
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     FirebaseDatabase database;
@@ -51,6 +53,8 @@ public class Home extends AppCompatActivity
         //Init firebase
         database = FirebaseDatabase.getInstance();
         category = database.getReference("Category");
+
+        Paper.init(this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -165,6 +169,9 @@ public class Home extends AppCompatActivity
             Intent orderIntent = new Intent(Home.this, OrderStatus.class);
             startActivity(orderIntent);
         } else if (id == R.id.nav_log_out) {
+
+            //Delete saved phone and pwd
+            Paper.book().destroy();
             //Logout
             Intent signIn = new Intent(Home.this, SignIn.class);
             signIn.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
