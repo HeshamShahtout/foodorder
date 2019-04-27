@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.example.eatit.Common.Common;
 import com.example.eatit.Database.Database;
 import com.example.eatit.Model.Food;
 import com.example.eatit.Model.Order;
@@ -78,7 +79,13 @@ public class FoodDetail extends AppCompatActivity {
             foodId = getIntent().getStringExtra("FoodId");
         if(!foodId.isEmpty())
         {
-            getFoodDetails(foodId);
+            if(Common.isConnectedtoInternet(getBaseContext()))
+                getFoodDetails(foodId);
+            else
+            {
+                Toast.makeText(FoodDetail.this,"Please check your connection",Toast.LENGTH_SHORT).show();
+                return;
+            }
         }
 
     }

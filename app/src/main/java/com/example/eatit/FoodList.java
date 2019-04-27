@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.eatit.Common.Common;
 import com.example.eatit.Interface.itemClickListner;
 import com.example.eatit.Model.Food;
 import com.example.eatit.ViewHolder.FoodViewHolder;
@@ -67,7 +68,13 @@ public class FoodList extends AppCompatActivity {
         }
         if(!categoryId.isEmpty() && categoryId != null)
         {
-            loadFoodList(categoryId);
+            if(Common.isConnectedtoInternet(getBaseContext()))
+                loadFoodList(categoryId);
+            else
+            {
+                Toast.makeText(FoodList.this,"Please check your connection",Toast.LENGTH_SHORT).show();
+                return;
+            }
         }
 
         //Search
