@@ -9,4 +9,7 @@
 
     <color name="overlayBackground">#7f333639</color>
     <color name="overlayActivity">#0e0d0e</color>
+
+    <color name="colorRed">#ff0000</color>
+
 </resources>
